@@ -1,4 +1,4 @@
-var mysql      = require('mysql');
+import mysql from 'mysql';
 var connection = mysql.createConnection({
   host     : '34.64.200.128',
   port     : '3306',
@@ -9,4 +9,4 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-module.exports = connection;
+export default connection;
