@@ -1,0 +1,19 @@
+User Info
+    username,
+    last transcation ID(to trace),
+    initial status{
+        main_color,
+        sub_color,
+        main_personality,
+        sub_personality
+    }
+
+Transaction Info
+    transaction ID,
+    reference transaction ID, # json에 들어가긴 하나, 구조상 중요한 정보이며 역추적의 용이함을 고려하여 따로 분리함.
+    content(json)
+
+Content Info
+    default images(black-white, color will be determined with random number),
+    event_list
+
