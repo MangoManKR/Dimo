@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/content.css" />
 		<script src="js/modernizr.custom.js"></script>
-		<script src="js/inscription.js" type="module"></script>
+		<script src="js/inscription.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -37,8 +37,9 @@
 									<span class="icon icon-close">Close the dialog</span>
 									<h2>Login</h2>
 									<form id="login-form">
+										<p><label>User ID</label><input type="text" name="userid" id="userID" class="login-form-field" placeholder="UserID" /></p>
 										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress" class="login-form-field" placeholder="Walletaddress" /></p>
-										<p><button type="button" onclick="location.href='main.html'" id = "logIn">Connect</button></p>
+										<p><button type="button" onclick="getUserInfo(document.getElementById('walletAdress'))" id = "logIn">Connect</button></p>
 									</form>
 								</div>
 							</div>
@@ -51,10 +52,11 @@
 							<div>
 								<div class="content-style-form content-style-form-2">
 									<span class="icon icon-close">Close the dialog</span>
-									<h2>Login</h2>
+									<h2>Sign up</h2>
 									<form form="login-form">
+										<p><label>User ID</label><input type="text" name="userid" id="userID" class="login-form-field" placeholder="UserID" /></p>
 										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress" class="login-form-field" placeholder="Walletaddress" /></p>
-										<p><button type="button" onclick="" id = "signIn">Connect</button></p>
+										<p><button type="button" onclick="location.href='main.html'" id = "signIn">Connect</button></p>
 									</form>
 								</div>
 							</div>
