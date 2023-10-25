@@ -1,8 +1,8 @@
 function getUserInfo(inscription_address){
-  fetch("http://34.64.200.128:3000/getUserInfo?inscription_address="+inscription_address)
+  fetch("//34.64.200.128:3000/getUserInfo?inscription_address="+inscription_address)
   .then((response) => {
     if (response.status === 200) {
-      localStorage.setItem('user', JSON.stringify(response.data.json()));
+      //localStorage.setItem('user', JSON.stringify(response.data.json()));
       return response.json();
     } else if (response.status === 201) {
       alert("Please check your inscription address.");
@@ -13,8 +13,7 @@ function getUserInfo(inscription_address){
     }
   })
   .then((result) => {
-    let data = result;
-    return data;
+    console.log(result)
   });
 }
 
