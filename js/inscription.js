@@ -12,7 +12,10 @@ function getUserInfo(inscription_address){
       return response.json();
     }
   })
-  .then((result) => console.log(result));
+  .then((result) => {
+    let data = result;
+    return data;
+  });
 }
 
 function registerUser(username, inscription_address){

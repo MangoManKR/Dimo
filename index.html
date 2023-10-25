@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>Dimodachi</title>
 		<meta name="description" content="Morphing Buttons Concept: Inspiration for revealing content by morphing the action element" />
@@ -37,9 +38,9 @@
 									<span class="icon icon-close">Close the dialog</span>
 									<h2>Login</h2>
 									<form id="login-form">
-										<p><label>User ID</label><input type="text" name="userid" id="userID" class="login-form-field" placeholder="UserID" /></p>
-										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress" class="login-form-field" placeholder="Walletaddress" /></p>
-										<p><button type="button" onclick="getUserInfo(document.getElementById('walletAdress'))" id = "logIn">Connect</button></p>
+										<p><label>User ID</label><input type="text" name="userid" id="userID_l" class="login-form-field" placeholder="UserID" /></p>
+										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress_l" class="login-form-field" placeholder="Walletaddress" /></p>
+										<p><button type="button" onclick="getUserInfo(document.getElementById('walletAdress_l'))" id = "logIn">Connect</button></p>
 									</form>
 								</div>
 							</div>
@@ -54,8 +55,8 @@
 									<span class="icon icon-close">Close the dialog</span>
 									<h2>Sign up</h2>
 									<form form="login-form">
-										<p><label>User ID</label><input type="text" name="userid" id="userID" class="login-form-field" placeholder="UserID" /></p>
-										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress" class="login-form-field" placeholder="Walletaddress" /></p>
+										<p><label>User ID</label><input type="text" name="userid" id="userID_s" class="login-form-field" placeholder="UserID" /></p>
+										<p><label>Wallet Address</label><input type="text" name="walletaddress" id="walletAdress_s" class="login-form-field" placeholder="Walletaddress" /></p>
 										<p><button type="button" onclick="location.href='main.html'" id = "signIn">Connect</button></p>
 									</form>
 								</div>
