@@ -1,24 +1,22 @@
 function getUserInfo(inscription_address){
-  fetch("//34.64.200.128:3000/getUserInfo?inscription_address="+inscription_address)
+  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address="+inscription_address)
   .then((response) => {
     if (response.status === 200) {
-      //localStorage.setItem('user', JSON.stringify(response.data.json()));
       return response.json();
     } else if (response.status === 201) {
       alert("Please check your inscription address.");
-      return response.json();
     } else {
       alert("Error: "+response.status)
-      return response.json();
     }
-  })
+  })  
   .then((result) => {
+    localStorage.setItem('user', JSON.stringify(response.data.json()));
     console.log(result)
   });
 }
 
 function registerUser(username, inscription_address){
-  fetch("http://34.64.200.128:3000/registerUser", {
+  fetch("https://demoworld.ddns.net/registerUser", {
     method: "POST",
     body: JSON.stringify({
       "username": username,
@@ -39,7 +37,7 @@ function registerUser(username, inscription_address){
 }
 
 function getDeMoList(uid){
-  fetch("http://34.64.200.128:3000/getDeMoList?uid="+uid)
+  fetch("https://demoworld.ddns.net/getDeMoList?uid="+uid)
   .then(((response) => {
     if (response.status === 200) {
       localStorage.setItem('demo', JSON.stringify(response.data.json()));
@@ -52,7 +50,7 @@ function getDeMoList(uid){
 }
 
 function getInscription(inscription_id){
-  fetch("http://34.64.200.128:3000/getInscription?inscription_id="+inscription_id)
+  fetch("https://demoworld.ddns.net/getInscription?inscription_id="+inscription_id)
   .then(((response) => {
     if (response.status === 200) {
       localStorage.setItem('inscription', JSON.stringify(response.data.json()));
@@ -65,7 +63,7 @@ function getInscription(inscription_id){
 }
 
 function depositBalance(uid, deposit_txid){
-  fetch("http://34.64.200.128:3000/depositBalance", {
+  fetch("https://demoworld.ddns.net/depositBalance", {
     method: "POST",
     body: JSON.stringify({
       "uid": Number(uid),
@@ -84,7 +82,7 @@ function depositBalance(uid, deposit_txid){
 }
 
 function makeInscription(image, status, uid){
-  fetch("http://34.64.200.128:3000/makeInscription", {
+  fetch("https://demoworld.ddns.net/makeInscription", {
     method: "POST",
     body: JSON.stringify({
       "json_data": {
@@ -106,7 +104,7 @@ function makeInscription(image, status, uid){
 }
 
 function claimInscription(uid, demo_id){
-  fetch("http://34.64.200.128:3000/claimInscription?uid="+uid+"&demo_id="+demo_id)
+  fetch("https://demoworld.ddns.net/claimInscription?uid="+uid+"&demo_id="+demo_id)
   .then(((response) => {
     if (response.status === 200) {
       alert(response.msg)
@@ -119,7 +117,7 @@ function claimInscription(uid, demo_id){
 }
 
 function sendInscription(txid, uid, demo_id){
-  fetch("http://34.64.200.128:3000/sendInscription", {
+  fetch("https://demoworld.ddns.net/sendInscription", {
     method: "POST",
     body: JSON.stringify({
       "txid": txid,
@@ -141,13 +139,81 @@ function sendInscription(txid, uid, demo_id){
 }
 
 function login(inscription_address){
-  getUserInfo(inscription_address)
+  //getUserInfo
+  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address="+inscription_address)
+  .then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else if (response.status === 201) {
+      alert("Please check your inscription address.");
+    } else {
+      alert("Error: "+response.status)
+    }
+  })  
+  .then((result) => {
+    localStorage.setItem('user', JSON.stringify(result.data.json()));
+    //getDeMoInfo
+    fetch("https://demoworld.ddns.net/getDeMoList?uid="+result.data.uid)
+    .then(((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 201){
+        alert("You don't have any DeMo yet.");
+      } else{
+        alert("Error: "+response.status)
+      }
+    }))
+    .then((result) => {
+      localStorage.setItem('demo', JSON.stringify(result.data.json()));
+      console.log(result)
+    });
+    console.log(result)
+  });
+
+  //location.href = "main.html";
 }
 
+function signUp(username, inscription_address){
+  // registerUser
+  fetch("https://demoworld.ddns.net/registerUser", {
+    method: "POST",
+    body: JSON.stringify({
+      "username": username,
+    "inscription_address": inscription_address
+    }),
+  })
+  .then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else if (response.status === 201) {
+      alert("User already exists");
+    } else {
+      alert("Error: "+response.status)
+    }
+  })
+  .then((result) => {
+    getUserInfo(inscription_address)
+    console.log(result)});
+
+  //location.href = "main.html";
+}
 
 function test(){
-  fetch('https://www.fruityvice.com/api/fruit/all')
- 	.then(res => {
-    return res.json()})
-  .then(data => {})
+  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address=tb1qjpees486fgt3svj33p2zx76xmzhuymgwl348kd")
+  .then((response) => {
+    if (response.status === 200) {
+      //localStorage.setItem('user', JSON.stringify(response.data.json()));
+      return response.json();
+    } else if (response.status === 201) {
+      alert("Please check your inscription address.");
+      return response.json();
+    } else {
+      alert("Error: "+response.status)
+      return response.json();
+    }
+  })  
+  .then((result) => {
+    console.log(result)
+    return 3;
+  });
 }
