@@ -15,6 +15,22 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 }
 
+imgside {
+	display: grid;
+    width:50%;
+	height:fit-content;
+	align-content: center;
+	align-items:center;
+    background-color: red;
+    float: left;
+ }
+
+contentside{
+	width:50%;
+    background-color: rgb(43, 0, 255);
+    float: left;
+}
+
 a,
 a:focus {
 	outline: none;

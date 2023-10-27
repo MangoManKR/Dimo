@@ -3,14 +3,16 @@ function getUserInfo(inscription_address){
   .then((response) => {
     if (response.status === 200) {
       return response.json();
-    } else if (response.status === 201) {
-      alert("Please check your inscription address.");
     } else {
       alert("Error: "+response.status)
     }
   })  
   .then((result) => {
-    localStorage.setItem('user', JSON.stringify(response.data.json()));
+    if (result.status === 200){
+      localStorage.setItem('user', JSON.stringify(result.data));
+    } else if (result.status === 201){
+      alert("Please check your inscription address.");
+    }
     console.log(result)
   });
 }
@@ -144,33 +146,39 @@ function login(inscription_address){
   .then((response) => {
     if (response.status === 200) {
       return response.json();
-    } else if (response.status === 201) {
-      alert("Please check your inscription address.");
     } else {
       alert("Error: "+response.status)
     }
   })  
   .then((result) => {
-    localStorage.setItem('user', JSON.stringify(result.data.json()));
-    //getDeMoInfo
-    fetch("https://demoworld.ddns.net/getDeMoList?uid="+result.data.uid)
-    .then(((response) => {
-      if (response.status === 200) {
-        return response.json();
-      } else if (response.status === 201){
-        alert("You don't have any DeMo yet.");
-      } else{
-        alert("Error: "+response.status)
-      }
-    }))
-    .then((result) => {
-      localStorage.setItem('demo', JSON.stringify(result.data.json()));
+    if (result.status === 200){
+      localStorage.setItem('user', JSON.stringify(result.data));
+      //getDeMoInfo
+      fetch("https://demoworld.ddns.net/getDeMoList?uid="+result.data.uid)
+      .then(((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else{
+          alert("Error: "+response.status)
+        }
+      }))
+      .then((result) => {
+        if (result.status === 200){
+          localStorage.setItem('demo', JSON.stringify(result.data));
+        } else if (result.status === 201){
+          alert("You don't have any DeMo yet.");
+        }
+        console.log(result)
+      });
       console.log(result)
-    });
-    console.log(result)
+      location.href = "main.html";
+    }else if (result.status === 201) {
+      alert("Please check your inscription address.");
+      console.log(result)
+    }
   });
 
-  //location.href = "main.html";
+  //
 }
 
 function signUp(username, inscription_address){
@@ -185,35 +193,40 @@ function signUp(username, inscription_address){
   .then((response) => {
     if (response.status === 200) {
       return response.json();
-    } else if (response.status === 201) {
-      alert("User already exists");
     } else {
       alert("Error: "+response.status)
     }
   })
   .then((result) => {
-    getUserInfo(inscription_address)
-    console.log(result)});
+    if(result.status === 200){
+      console.log(result)
+      getUserInfo(inscription_address)
+      location.href = "main.html";
+    } else if(result.status === 201){
+      alert("User already exists");
+    }
+   });
 
   //location.href = "main.html";
 }
 
-function test(){
-  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address=tb1qjpees486fgt3svj33p2zx76xmzhuymgwl348kd")
+function test(inscription_address){
+  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address="+inscription_address)
   .then((response) => {
+    console.log(response)
     if (response.status === 200) {
-      //localStorage.setItem('user', JSON.stringify(response.data.json()));
-      return response.json();
-    } else if (response.status === 201) {
-      alert("Please check your inscription address.");
       return response.json();
     } else {
       alert("Error: "+response.status)
-      return response.json();
     }
   })  
   .then((result) => {
-    console.log(result)
-    return 3;
+    if (result.status === 200) {
+      localStorage.setItem('user', JSON.stringify(result.data));
+      console.log(result)
+    } else if (result.status === 201) {
+      alert("Please check your inscription address.");
+      console.log(result)
+    }
   });
 }
