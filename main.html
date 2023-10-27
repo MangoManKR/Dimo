@@ -22,8 +22,17 @@
 				
 			</header>
 			<nav class="codrops-demos" style=" height: 100%;">
-				<imgside><img id = "demo_img" src = "img/none.png" style="height: auto; width: auto; align-items: center; align-self: center;" alt="My Image" onload="demo_image(this)"></imgside>
-				<contentside><img src="img/egg.png" alt="My Image"></contentside>
+				<imgside><img id = "demo_img" src = "img/none.png" style="height: auto; width: auto; margin-top: auto;
+					margin-bottom: auto;
+					margin-left: auto;
+					margin-right: auto;" alt="My Image" onload="demo_image(this)"></imgside>
+				<contentside id="d_content">
+					<p id = "d_status" onclick="demo_status()">status: </p>
+					<p id = "d_status2">status2: </p>
+					<p id = "d_status3">status3: </p>
+					<p id = "d_status4">status4: </p>
+				</contentside>
+				<script>demo_status()</script>
 			</nav>
 			<nav id="bt-menu" class="bt-menu">
 				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>

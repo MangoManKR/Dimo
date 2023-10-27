@@ -224,12 +224,20 @@ function signUp(username, inscription_address){
 function demo_image(obj)
 {
   var demo = localStorage.getItem('demo')
-  obj.src = "img/none.png";
-  if (demo === null){
+  if (demo === 'null'){
     obj.src = "img/none.png";
   }
 }
 
+function demo_status()
+{
+  var demo = localStorage.getItem('demo')
+  if (demo === 'null'){
+    document.getElementById("d_status").innerText = 'test';
+    console.log("test")
+  }
+  console.log("called")
+}
 
 function test(username, inscription_address){
   fetch("https://demoworld.ddns.net/registerUser", {
