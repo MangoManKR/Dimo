@@ -22,20 +22,27 @@ function registerUser(username, inscription_address){
     method: "POST",
     body: JSON.stringify({
       "username": username,
-    "inscription_address": inscription_address
+      "inscription_address": inscription_address
     }),
   })
   .then((response) => {
     if (response.status === 200) {
-      getUserInfo(inscription_address)
-    } else if (response.status === 201) {
-      alert("User already exists");
+      return response.json();
     } else {
       alert("Error: "+response.status)
-      return response.json();
     }
   })
-  .then((result) => console.log(result));
+  .then((result) => {
+    if(result.status === 200){
+      console.log(result)
+    } else if(result.status === 201){
+      alert("User already exists");
+      console.log(result)
+    } else {
+      alert("Error: " + result.status)
+      console.log(result) 
+    }
+   });
 }
 
 function getDeMoList(uid){
@@ -167,6 +174,7 @@ function login(inscription_address){
           localStorage.setItem('demo', JSON.stringify(result.data));
         } else if (result.status === 201){
           alert("You don't have any DeMo yet.");
+          localStorage.setItem('demo', null);
         }
         console.log(result)
       });
@@ -187,7 +195,7 @@ function signUp(username, inscription_address){
     method: "POST",
     body: JSON.stringify({
       "username": username,
-    "inscription_address": inscription_address
+      "inscription_address": inscription_address
     }),
   })
   .then((response) => {
@@ -201,32 +209,56 @@ function signUp(username, inscription_address){
     if(result.status === 200){
       console.log(result)
       getUserInfo(inscription_address)
+      localStorage.setItem('demo', null);
       location.href = "main.html";
     } else if(result.status === 201){
       alert("User already exists");
+      console.log(result)
+    } else {
+      console.log(result) 
     }
    });
-
   //location.href = "main.html";
 }
 
-function test(inscription_address){
-  fetch("https://demoworld.ddns.net/getUserInfo?inscription_address="+inscription_address)
+function demo_image(obj)
+{
+  var demo = localStorage.getItem('demo')
+  obj.src = "img/none.png";
+  if (demo === null){
+    obj.src = "img/none.png";
+  }
+}
+
+
+function test(username, inscription_address){
+  fetch("https://demoworld.ddns.net/registerUser", {
+    method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
+    body: JSON.stringify({
+      "username": username,
+      "inscription_address": inscription_address
+    }),
+  })
   .then((response) => {
-    console.log(response)
     if (response.status === 200) {
       return response.json();
     } else {
       alert("Error: "+response.status)
     }
-  })  
+  })
   .then((result) => {
-    if (result.status === 200) {
-      localStorage.setItem('user', JSON.stringify(result.data));
+    if(result.status === 200){
       console.log(result)
-    } else if (result.status === 201) {
-      alert("Please check your inscription address.");
+    } else if(result.status === 201){
+      alert("User already exists");
       console.log(result)
+    } else {
+      alert("Error: " + result.status)
+      console.log(result) 
     }
-  });
+   });
 }
+
