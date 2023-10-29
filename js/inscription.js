@@ -163,7 +163,7 @@ function login(inscription_address){
   })  
   .then((result) => {
     if (result.status === 200){
-      localStorage.setItem('user', JSON.parse(JSON.stringify(result.data)));
+      localStorage.setItem('user', JSON.stringify(result.data));
       //getDeMoInfo
       fetch("https://demoworld.ddns.net/getDeMoList?uid="+result.data.uid)
       .then(((response) => {
@@ -175,7 +175,7 @@ function login(inscription_address){
       }))
       .then((result) => {
         if (result.status === 200){
-          localStorage.setItem('demo', JSON.parse(JSON.stringify(result.data)));
+          localStorage.setItem('demo', JSON.stringify(result.data));
         } else if (result.status === 201){
           alert("You don't have any DeMo yet.");
           localStorage.setItem('demo', null);
@@ -231,6 +231,7 @@ function signUp(username, inscription_address){
 function demo_image()
 {
   var demo = localStorage.getItem('demo')
+  demo = JSON.parse(demo)
   if (demo === 'null'){
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
     document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
@@ -244,10 +245,10 @@ function demo_image()
 function demo_status()
 {
   var demo = localStorage.getItem('demo')
+  demo = JSON.parse(demo)
   if (demo === 'null'){
     document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
-    
   } else {
     demo = demo[demo.length - 1]
     document.getElementById("d_satus1").innerText = "Name:" + demo.content.status.name
