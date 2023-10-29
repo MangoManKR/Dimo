@@ -1,5 +1,5 @@
 ///////////////////////////////////////Color/////////////////////////////////////////
-document.write("./js/filterGenerator.js")
+//document.write("./js/filterGenerator.js")
 ////////////////////////////////////////////////////////////////////////////////
 
 function getUserInfo(inscription_address){
@@ -13,7 +13,7 @@ function getUserInfo(inscription_address){
   })  
   .then((result) => {
     if (result.status === 200){
-      localStorage.setItem('user', JSON.stringify(result.data));
+      localStorage.setItem('user', JSON.parse(JSON.stringify(result.data)));
     } else if (result.status === 201){
       alert("Please check your inscription address.");
     }
@@ -163,7 +163,7 @@ function login(inscription_address){
   })  
   .then((result) => {
     if (result.status === 200){
-      localStorage.setItem('user', JSON.stringify(result.data));
+      localStorage.setItem('user', JSON.parse(JSON.stringify(result.data)));
       //getDeMoInfo
       fetch("https://demoworld.ddns.net/getDeMoList?uid="+result.data.uid)
       .then(((response) => {
@@ -175,7 +175,7 @@ function login(inscription_address){
       }))
       .then((result) => {
         if (result.status === 200){
-          localStorage.setItem('demo', JSON.stringify(result.data));
+          localStorage.setItem('demo', JSON.parse(JSON.stringify(result.data)));
         } else if (result.status === 201){
           alert("You don't have any DeMo yet.");
           localStorage.setItem('demo', null);
