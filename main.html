@@ -10,11 +10,12 @@
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
 		<link rel="stylesheet" type="text/css" href="css/normalize_main.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo_main.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo_main.css?after" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/style3.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/inscription.js"></script>
+		<script src="js/filterGenerator.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -22,17 +23,23 @@
 				
 			</header>
 			<nav class="codrops-demos" style=" height: 100%;">
-				<imgside><img id = "demo_img" src = "img/none.png" style="height: auto; width: auto; margin-top: auto;
+				<imgside><img id = "demo_img" src="img/none.png" style=" width: 40vh;
+					margin-top: auto;
 					margin-bottom: auto;
 					margin-left: auto;
-					margin-right: auto;" alt="My Image" onload="demo_image(this)"></imgside>
-				<contentside id="d_content">
-					<p id = "d_status" onclick="demo_status()">status: </p>
-					<p id = "d_status2">status2: </p>
-					<p id = "d_status3">status3: </p>
-					<p id = "d_status4">status4: </p>
+					margin-right: auto;
+					filter: auto;" alt="My Image" ></imgside>
+				<contentside id="d_content" onload="demo_status()">
+					<p id = "d_status1"></p>
+					<p id = "d_status2"></p>
+					<p id = "d_status3"></p>
+					<p id = "d_status4"></p>
+					<p id = "d_status5"></p>
+					<p id = "d_status6"></p>
+					<p id = "d_status7"></p>
 				</contentside>
-				<script>demo_status()</script>
+				<script>demo_status();
+				demo_image(this)	</script>
 			</nav>
 			<nav id="bt-menu" class="bt-menu">
 				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>

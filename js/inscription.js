@@ -1,3 +1,7 @@
+///////////////////////////////////////Color/////////////////////////////////////////
+document.write("./js/filterGenerator.js")
+////////////////////////////////////////////////////////////////////////////////
+
 function getUserInfo(inscription_address){
   fetch("https://demoworld.ddns.net/getUserInfo?inscription_address="+inscription_address)
   .then((response) => {
@@ -193,6 +197,9 @@ function signUp(username, inscription_address){
   // registerUser
   fetch("https://demoworld.ddns.net/registerUser", {
     method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
     body: JSON.stringify({
       "username": username,
       "inscription_address": inscription_address
@@ -221,11 +228,16 @@ function signUp(username, inscription_address){
   //location.href = "main.html";
 }
 
-function demo_image(obj)
+function demo_image()
 {
   var demo = localStorage.getItem('demo')
   if (demo === 'null'){
-    obj.src = "img/none.png";
+    document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
+    document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
+  } else {
+    demo = demo[demo.length - 1]
+    document.getElementById("demo_img").src = "data:image/png;base64,"+demo.content.image
+    document.getElementById("demo_img").filter = generate_filter(demo.content.status.main_color.replace('0x','#'))
   }
 }
 
@@ -233,8 +245,18 @@ function demo_status()
 {
   var demo = localStorage.getItem('demo')
   if (demo === 'null'){
-    document.getElementById("d_status").innerText = 'test';
-    console.log("test")
+    document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
+    document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
+    
+  } else {
+    demo = demo[demo.length - 1]
+    document.getElementById("d_satus1").innerText = "Name:" + demo.content.status.name
+    document.getElementById("d_satus2").innerText = "ID" + demo.content.status.demo_id
+    document.getElementById("d_satus3").innerText = "Sex" + demo.content.status.sex
+    document.getElementById("d_satus4").innerText = "Height" + demo.content.status.height
+    document.getElementById("d_satus5").innerText = "Weight" + demo.content.status.weight
+    document.getElementById("d_satus6").innerText = "Health" + demo.content.status.health
+    document.getElementById("d_satus7").innerText = "Race" + demo.content.status.race
   }
   console.log("called")
 }

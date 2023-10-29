@@ -36,6 +36,13 @@ contentside{
 	color: black;
 }
 
+.demo_img{
+	object-fit: contain;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
 a,
 a:focus {
 	outline: none;
