@@ -14,6 +14,8 @@
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/style3.css" />
 		<script src="js/modernizr.custom.js"></script>
+		<script src="js/inscription.js" defer></script>
+		<script src="js/filterGenerator.js" defer></script>
 	</head>
 	<body>
 		<div class="container">
@@ -42,7 +44,7 @@
 				<ul>
 					<li><a id = "about_btn" href="about.html" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;" class="bt-icon icon-user-outline">About</a></li>
 					<li><a id = "order_btn" href="#" class="bt-icon icon-download">Order</a></li>
-					<li><a id = "_btn"href="#" class="bt-icon icon-browser">to do?</a></li>
+					<li><a id = "wallet_btn" href="https://leather.io/" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false" class="bt-icon icon-browser">to do?</a></li>
 					<li><a id = "interact_btn" href="#" class="bt-icon icon-star">Interact</a></li>
 					<li><a id = "history_btn" href="#" class="bt-icon icon-picture">History</a></li>
 					<li><a id = "disconnect_btn" onclick="logout()" class="bt-icon icon-enter">Disconnect</a></li>
@@ -50,8 +52,6 @@
 			</nav>
 		</div><!-- /container -->
 	</body>
-	<script src="js/inscription.js"></script>
-	<script src="js/filterGenerator.js"></script>
 	<script>
 	demo_status()
 	demo_image()

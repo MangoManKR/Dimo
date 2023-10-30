@@ -253,13 +253,13 @@ function demo_status()
   } else {
     demo = demo[demo.length - 1]
     demo = JSON.parse(demo.content)
-    document.getElementById("d_satus1").innerText = "Name:" + demo.status.name
-    document.getElementById("d_satus2").innerText = "ID" + demo.status.demo_id
-    document.getElementById("d_satus3").innerText = "Sex" + demo.status.sex
-    document.getElementById("d_satus4").innerText = "Height" + demo.status.height
-    document.getElementById("d_satus5").innerText = "Weight" + demo.status.weight
-    document.getElementById("d_satus6").innerText = "Health" + demo.status.health
-    document.getElementById("d_satus7").innerText = "Race" + demo.status.race
+    document.getElementById("d_status1").innerText = "Name:" + demo.status.name
+    document.getElementById("d_status2").innerText = "ID" + demo.status.demo_id
+    document.getElementById("d_status3").innerText = "Sex" + demo.status.sex
+    document.getElementById("d_status4").innerText = "Height" + demo.status.height
+    document.getElementById("d_status5").innerText = "Weight" + demo.status.weight
+    document.getElementById("d_status6").innerText = "Health" + demo.status.health
+    document.getElementById("d_status7").innerText = "Race" + demo.status.race
   }
   console.log("called")
 }
