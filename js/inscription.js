@@ -176,14 +176,15 @@ function login(inscription_address){
       .then((result) => {
         if (result.status === 200){
           localStorage.setItem('demo', JSON.stringify(result.data));
+          location.href = "main.html";
         } else if (result.status === 201){
           confirm("You don't have any DeMo yet.");
           localStorage.setItem('demo', null);
+          location.href = "main.html";
         }
         console.log(result)
       });
       console.log(result)
-      location.href = "main.html";
     }else if (result.status === 201) {
       alert("Please check your inscription address.");
       console.log(result)
@@ -222,10 +223,10 @@ function signUp(username, inscription_address){
       alert("User already exists");
       console.log(result)
     } else {
+      alert("Error: " + result.status)
       console.log(result) 
     }
    });
-  //location.href = "main.html";
 }
 
 function demo_image()
