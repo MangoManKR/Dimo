@@ -177,7 +177,7 @@ function login(inscription_address){
         if (result.status === 200){
           localStorage.setItem('demo', JSON.stringify(result.data));
         } else if (result.status === 201){
-          alert("You don't have any DeMo yet.");
+          confirm("You don't have any DeMo yet.");
           localStorage.setItem('demo', null);
         }
         console.log(result)
