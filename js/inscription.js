@@ -234,7 +234,7 @@ function demo_image()
   demo = JSON.parse(demo)
   if (demo === null){
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
-    document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
+    //document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
     demo = demo[demo.length - 1]
     demo = JSON.parse(demo.content)
