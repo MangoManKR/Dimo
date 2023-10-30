@@ -232,7 +232,7 @@ function demo_image()
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
-  if (demo === 'null'){
+  if (demo === null){
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
     document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
@@ -247,7 +247,7 @@ function demo_status()
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
-  if (demo === 'null'){
+  if (demo === null){
     document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
   } else {
@@ -295,3 +295,8 @@ function test(username, inscription_address){
    });
 }
 
+function logout(){
+  localStorage.setItem('user', null);
+  localStorage.setItem('demo', null);
+  location.href = "index.html";
+}
