@@ -254,13 +254,41 @@ function demo_status()
   } else {
     demo = demo[demo.length - 1]
     demo = JSON.parse(demo.content)
-    document.getElementById("d_status1").innerText = "Name:" + demo.status.name
-    document.getElementById("d_status2").innerText = "ID" + demo.status.demo_id
-    document.getElementById("d_status3").innerText = "Sex" + demo.status.sex
-    document.getElementById("d_status4").innerText = "Height" + demo.status.height
-    document.getElementById("d_status5").innerText = "Weight" + demo.status.weight
-    document.getElementById("d_status6").innerText = "Health" + demo.status.health
-    document.getElementById("d_status7").innerText = "Race" + demo.status.race
+    var sex = ""
+    var health = ""
+    var race = ""
+    
+    if (demo.status.sex === 0){
+      sex = "none"
+    }else if(demo.status.sex === 1){
+      sex = "male"
+    }else if(demo.status.sex === 2){
+      sex = "female"
+    }
+
+    if (demo.status.health === 0){
+      health = "Dead"
+    }else if(demo.status.health === 1){
+      health = "Ill"
+    } else if(demo.status.health === 2){
+      health = "Normal"
+    } else if(demo.status.health === 3){
+      health = "Healthy"
+    }
+
+    if (demo.status.race === 0){
+      race = "Dragon"
+    } else {
+      race = "Dragon" // need to change
+    }
+
+    document.getElementById("d_status1").innerText = "Name: " + demo.status.name
+    document.getElementById("d_status2").innerText = "ID: " + demo.status.demo_id
+    document.getElementById("d_status3").innerText = "Sex: " + sex
+    document.getElementById("d_status4").innerText = "Height: " + demo.status.height + "m"
+    document.getElementById("d_status5").innerText = "Weight: " + demo.status.weight + "kg"
+    document.getElementById("d_status6").innerText = "Health: " + health
+    document.getElementById("d_status7").innerText = "Race: " + race
   }
   console.log("called")
 }
@@ -300,4 +328,10 @@ function logout(){
   localStorage.setItem('user', null);
   localStorage.setItem('demo', null);
   location.href = "index.html";
+}
+
+function charge(){
+  if(confirm("Are you sure to send 0.001 bitcoin to Demo's wallet? \nIt will be used to make your own DEMO.")){
+    
+  }
 }
