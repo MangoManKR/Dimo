@@ -332,6 +332,22 @@ function logout(){
 
 function charge(){
   if(confirm("Are you sure to send 0.001 bitcoin to Demo's wallet? \nIt will be used to make your own DEMO.")){
-    
+    // send bitcoin to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427
+    // and get txid -> deposit_txid
+    fetch("https://demoworld.ddns.net/depositBalance", {
+    method: "POST",
+    body: JSON.stringify({
+      "uid": JSON.parse(localStorage.getItem('user')).uid,
+      "deposit_txid": deposit_txid
+    }),
+  })
+  .then(((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      alert("Error: "+response.status)
+    }
+  }))
+  .then((result) => console.log(result));
   }
 }
