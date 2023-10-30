@@ -258,25 +258,25 @@ function demo_status()
     var health = ""
     var race = ""
     
-    if (demo.status.sex === 0){
+    if (demo.status.sex === '0x0'){
       sex = "none"
-    }else if(demo.status.sex === 1){
+    }else if(demo.status.sex === '0x1'){
       sex = "male"
-    }else if(demo.status.sex === 2){
+    }else if(demo.status.sex === '0x2'){
       sex = "female"
     }
 
-    if (demo.status.health === 0){
+    if (demo.status.health === '0x0'){
       health = "Dead"
-    }else if(demo.status.health === 1){
+    }else if(demo.status.health === '0x1'){
       health = "Ill"
-    } else if(demo.status.health === 2){
+    } else if(demo.status.health === '0x2'){
       health = "Normal"
-    } else if(demo.status.health === 3){
+    } else if(demo.status.health === '0x3'){
       health = "Healthy"
     }
 
-    if (demo.status.race === 0){
+    if (demo.status.race === '0x0'){
       race = "Dragon"
     } else {
       race = "Dragon" // need to change
@@ -350,4 +350,29 @@ function charge(){
   }))
   .then((result) => console.log(result));
   }
+}
+
+function firstInscription(){
+  //input: demo name, 
+  var user = JSON.parse(localStorage.getItem('user'))
+
+  fetch("https://demoworld.ddns.net/makeInscription", {
+    method: "POST",
+    body: JSON.stringify({
+      "json_data": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC",
+        "status": {},
+      },
+      "uid": Number(uid)
+    }),
+  })
+  .then(((response) => {
+    if (response.status === 200) {
+      alert(response.msg)
+    } else {
+      alert("Error: "+response.status)
+      return response.json();
+    }
+  }))
+  .then((result) => console.log(result));
 }
