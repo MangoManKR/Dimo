@@ -240,7 +240,7 @@ function demo_image()
     demo = demo[demo.length - 1]
     demo = JSON.parse(demo.content)
     document.getElementById("demo_img").src = "data:image/png;base64,"+demo.image
-    document.getElementById("demo_img").filter = generate_filter(demo.status.main_color.replace('0x','#'))
+    document.getElementById("demo_img").style.filter = generate_filter(demo.status.main_color.replace('0x','#'))
   }
 }
 
