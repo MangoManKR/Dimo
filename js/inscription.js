@@ -237,8 +237,9 @@ function demo_image()
     document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
     demo = demo[demo.length - 1]
-    document.getElementById("demo_img").src = "data:image/png;base64,"+demo.content.image
-    document.getElementById("demo_img").filter = generate_filter(demo.content.status.main_color.replace('0x','#'))
+    demo = JSON.parse(demo.content)
+    document.getElementById("demo_img").src = "data:image/png;base64,"+demo.image
+    document.getElementById("demo_img").filter = generate_filter(demo.status.main_color.replace('0x','#'))
   }
 }
 
@@ -251,13 +252,14 @@ function demo_status()
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
   } else {
     demo = demo[demo.length - 1]
-    document.getElementById("d_satus1").innerText = "Name:" + demo.content.status.name
-    document.getElementById("d_satus2").innerText = "ID" + demo.content.status.demo_id
-    document.getElementById("d_satus3").innerText = "Sex" + demo.content.status.sex
-    document.getElementById("d_satus4").innerText = "Height" + demo.content.status.height
-    document.getElementById("d_satus5").innerText = "Weight" + demo.content.status.weight
-    document.getElementById("d_satus6").innerText = "Health" + demo.content.status.health
-    document.getElementById("d_satus7").innerText = "Race" + demo.content.status.race
+    demo = JSON.parse(demo.content)
+    document.getElementById("d_satus1").innerText = "Name:" + demo.status.name
+    document.getElementById("d_satus2").innerText = "ID" + demo.status.demo_id
+    document.getElementById("d_satus3").innerText = "Sex" + demo.status.sex
+    document.getElementById("d_satus4").innerText = "Height" + demo.status.height
+    document.getElementById("d_satus5").innerText = "Weight" + demo.status.weight
+    document.getElementById("d_satus6").innerText = "Health" + demo.status.health
+    document.getElementById("d_satus7").innerText = "Race" + demo.status.race
   }
   console.log("called")
 }
