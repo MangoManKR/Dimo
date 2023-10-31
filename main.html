@@ -36,13 +36,24 @@
 						<button class="tab-button" data-tab-section="tab-section-2">탭 2</button>
 						<button class="tab-button" data-tab-section="tab-section-3">탭 3</button>
 					</nav>
-					<p id = "d_status1"></p>
-					<p id = "d_status2"></p>
-					<p id = "d_status3"></p>
-					<p id = "d_status4"></p>
-					<p id = "d_status5"></p>
-					<p id = "d_status6"></p>
-					<p id = "d_status7"></p>
+					<section id="tab-section-1" class="tab-section">
+						<p id = "d_status1"></p>
+						<p id = "d_status2"></p>
+						<p id = "d_status3"></p>
+						<p id = "d_status4"></p>
+						<p id = "d_status5"></p>
+						<p id = "d_status6"></p>
+						<p id = "d_status7"></p>
+					</section>
+					<section id="tab-section-2" class="tab-section" hidden>
+						<p id = "d_status8"></p>
+						<p id = "d_status9"></p>
+						<p id = "d_status10"></p>
+						<p id = "d_status11"></p>
+					</section>
+					<section id="tab-section-3" class="tab-section" hidden>
+						<div>탭 3 페이지</div>
+					</section>
 				</contentside>
 				<script>
 					demo_status()
@@ -51,6 +62,26 @@
 						console.log("Ddd")
 					}
 				</script>
+				<script>
+					const $nav = document.querySelector('#tab-button-nav')
+					const $sections = document.querySelectorAll('.tab-section');
+				
+					$nav.addEventListener('click', (e) => {
+					  if (!e.target.classList.contains('tab-button')) {
+						return;
+					  }
+					  
+					  const focusedTabId = e.target.dataset.tabSection;
+				
+					  $sections.forEach(($section) => {
+						if ($section.id === focusedTabId) {
+						  $section.removeAttribute('hidden');
+						} else {
+						  $section.setAttribute('hidden', true);
+						}
+					  });
+					});
+				  </script>
 			</nav>
 			<nav id="bt-menu" class="bt-menu">
 				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>

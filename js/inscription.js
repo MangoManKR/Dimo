@@ -294,6 +294,10 @@ function demo_status()
     document.getElementById("d_status5").innerText = "Weight: " + demo.status.weight + "kg"
     document.getElementById("d_status6").innerText = "Health: " + health
     document.getElementById("d_status7").innerText = "Race: " + race
+    document.getElementById("d_status8").innerText = "Strength: " + parseInt(demo.status.str,16)
+    document.getElementById("d_status9").innerText = "Dexterity: " + parseInt(demo.status.dex,16)
+    document.getElementById("d_status10").innerText = "Intelligence: " + parseInt(demo.status.int,16)
+    document.getElementById("d_status11").innerText = "Luck: " + parseInt(demo.status.luc,16)
   }
   console.log("called")
 }
@@ -421,7 +425,7 @@ function firstInscription(){
             "prev_inscription": null
       },
       },
-      "uid": Number(uid)
+      "uid": user.uid
     }),
   })
   .then(((response) => {
