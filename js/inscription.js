@@ -196,37 +196,42 @@ function login(inscription_address){
 
 function signUp(username, inscription_address){
   // registerUser
-  fetch("https://demoworld.ddns.net/registerUser", {
-    method: "POST",
-    headers : {               //데이터 타입 지정
-      "Content-Type":"application/json; charset=utf-8"
-  },
-    body: JSON.stringify({
-      "username": username,
-      "inscription_address": inscription_address
-    }),
-  })
-  .then((response) => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      alert("Error: "+response.status)
-    }
-  })
-  .then((result) => {
-    if(result.status === 200){
-      console.log(result)
-      getUserInfo(inscription_address)
-      localStorage.setItem('demo', null);
-      location.href = "main.html";
-    } else if(result.status === 201){
-      alert("User already exists");
-      console.log(result)
-    } else {
-      alert("Error: " + result.status)
-      console.log(result) 
-    }
-   });
+  if (inscription_address.length !== 64)
+  {
+    alert("Please check your inscription address.\nWe use leather wallet address.");
+  }else{
+    fetch("https://demoworld.ddns.net/registerUser", {
+      method: "POST",
+      headers : {               //데이터 타입 지정
+        "Content-Type":"application/json; charset=utf-8"
+    },
+      body: JSON.stringify({
+        "username": username,
+        "inscription_address": inscription_address
+      }),
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        alert("Error: "+response.status)
+      }
+    })
+    .then((result) => {
+      if(result.status === 200){
+        console.log(result)
+        getUserInfo(inscription_address)
+        localStorage.setItem('demo', null);
+        location.href = "main.html";
+      } else if(result.status === 201){
+        alert("User already exists");
+        console.log(result)
+      } else {
+        alert("Error: " + result.status)
+        console.log(result) 
+      }
+     });
+  }
 }
 
 function demo_image()
@@ -354,14 +359,66 @@ function charge(){
 
 function firstInscription(){
   //input: demo name, 
+  //Originally planned to use txid, but use wallet address instead.
+  var cnt = 0
+  var temp = ""
   var user = JSON.parse(localStorage.getItem('user'))
+  var address = user.address
+
+  cnt = address.charCodeAt(0)%4
+  var race = "0x"+cnt.toString(16)
+  
+  var sex = ""
+  cnt = count_number(address, 8, 16)
+  if (cnt === 0){
+    sex = "0x0"
+  } else if (cnt%2 === 0){
+    sex = "0x1"
+  } else {
+    sex = "0x2"
+  }
+
+  var weight = 0
+  cnt = 1 + sum_string(address, 16, 24)/976
+  weight = cnt.toFixed(2)
+
+  var height = 0
+  cnt = 1 + sum_string(address, 24, 32)/9760
+  height = cnt.toFixed(2)
+
+  var health = "0x3"
+
+  temp = organ_adress(address, 32, 40)
+  var str = "0x" + temp[0]
+  var dex = "0x" + temp[2]
+  var int = "0x" + temp[4]
+  var luc = "0x" + temp[6]
+
+  var main_color = "0x" + organ_adress(address, 40, 46)
+  var pattern_color = "0x" + organ_adress(address, 48, 54)
 
   fetch("https://demoworld.ddns.net/makeInscription", {
     method: "POST",
     body: JSON.stringify({
       "json_data": {
         "image": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC",
-        "status": {},
+        "status": {
+          "name": d_name,
+          "demo_id": user.uid + "00",
+            "sex": sex,
+            "height": height,
+            "weight": weight,
+            "health": health,
+            "race": race,
+            "main_color": main_color,
+            "pattern_color": pattern_color,
+            "pattern": "0xf",
+            "str": str,
+            "dex": dex,
+            "int": int,
+            "luc": luc,
+            "prev_inscription": null
+      },
       },
       "uid": Number(uid)
     }),
@@ -376,3 +433,45 @@ function firstInscription(){
   }))
   .then((result) => console.log(result));
 }
+
+
+function count_number(string, start, end){
+  var cnt = 0
+  for (step = start; step < end; step++) {
+    if (!isNaN(string[step])){
+      cnt += 1
+    }
+  }
+  return cnt
+}
+
+function sum_string(string, start, end){
+  var sum = 0
+  for (step = start; step < end; step++) {
+    sum += string.charCodeAt(step)
+  }
+  return sum
+}
+
+function organ_adress(address, start, end)
+{
+  var str = ""
+  address = address.toLowerCase()
+  for (step = start; step < end; step++) {
+    if(address[step].charCodeAt() > 102 && address[step].charCodeAt() < 113){
+      str += String.fromCharCode(address[step].charCodeAt() - 55)
+    } else if(address[step].charCodeAt() > 96 && address[step].charCodeAt() < 103){
+      str += address[step]
+    } else if(address[step].charCodeAt() > 47 && address[step].charCodeAt() < 58){
+      str += address[step]
+    } else if (address[step].charCodeAt() > 112 && address[step].charCodeAt() < 119){
+      str += String.fromCharCode(address[step].charCodeAt() - 15)
+    } else if (address[step].charCodeAt() > 118 && address[step].charCodeAt() < 123){
+      str += String.fromCharCode(address[step].charCodeAt() - 20)
+    } 
+  }
+  return str
+}
+
+tb1p4x9zm4zyafjs9dg3vznc4euwlftzda8gyg4juwchsl3xl7y7jf3srt7yaf
+
