@@ -31,6 +31,11 @@
 					margin-right: auto;
 					filter: auto;" alt="My Image" ></imgside>
 				<contentside id="d_content" onload="demo_status()">
+					<nav id="tab-button-nav">
+						<button class="tab-button" data-tab-section="tab-section-1">탭 1</button>
+						<button class="tab-button" data-tab-section="tab-section-2">탭 2</button>
+						<button class="tab-button" data-tab-section="tab-section-3">탭 3</button>
+					</nav>
 					<p id = "d_status1"></p>
 					<p id = "d_status2"></p>
 					<p id = "d_status3"></p>
@@ -52,7 +57,7 @@
 				<ul>
 					<li><a id = "about_btn" href="about.html" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;" class="bt-icon icon-user-outline">About</a></li>
 					<li><a id = "order_btn" onclick="firstInscription()" class="bt-icon icon-download">Order</a></li>
-					<li><a id = "wallet_btn" href="https://leather.io/" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false" class="bt-icon icon-browser">to do?</a></li>
+					<li><a id = "wallet_btn" href="https://leather.io/" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false" class="bt-icon icon-browser">Charge</a></li>
 					<li><a id = "interact_btn" href="#" class="bt-icon icon-star">Interact</a></li>
 					<li><a id = "history_btn" href="#" class="bt-icon icon-picture">History</a></li>
 					<li><a id = "disconnect_btn" onclick="logout()" class="bt-icon icon-enter">Disconnect</a></li>

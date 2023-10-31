@@ -362,6 +362,7 @@ function firstInscription(){
   //Originally planned to use txid, but use wallet address instead.
   var cnt = 0
   var temp = ""
+  var d_name = prompt("Please enter your DeMo's name", "DeMo")
   var user = JSON.parse(localStorage.getItem('user'))
   var address = user.inscription_address
 
