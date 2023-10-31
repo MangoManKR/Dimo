@@ -404,6 +404,9 @@ function firstInscription(){
 
   fetch("https://demoworld.ddns.net/makeInscription", {
     method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
     body: JSON.stringify({
       "json_data": {
         "image": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC",
@@ -484,6 +487,9 @@ function charge_btc()
   var user = JSON.parse(localStorage.getItem('user'))
   fetch("https://demoworld.ddns.net/depositBalance", {
     method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
     body: JSON.stringify({
       "uid": user.uid,
       "deposit_txid": deposit_txid
