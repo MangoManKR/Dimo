@@ -196,7 +196,7 @@ function login(inscription_address){
 
 function signUp(username, inscription_address){
   // registerUser
-  if (inscription_address.length !== 64)
+  if (inscription_address.length < 30)
   {
     alert("Please check your inscription address.\nWe use leather wallet address.");
   }else{
