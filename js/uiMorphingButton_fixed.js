@@ -19,7 +19,7 @@
 			'msTransition': 'MSTransitionEnd',
 			'transition': 'transitionend'
 		},
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+		transEndEventName = transEndEventNames[Modernizr.prefixed( 'transition' ) ],
 		support = { transitions : Modernizr.csstransitions };
 
 	function extend( a, b ) {

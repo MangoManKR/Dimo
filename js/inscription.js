@@ -430,7 +430,7 @@ function firstInscription(){
   })
   .then(((response) => {
     if (response.status === 200) {
-      alert(response.msg)
+      return response.json();
     } else {
       alert("Error: "+response.status)
       return response.json();
@@ -478,5 +478,25 @@ function organ_adress(address, start, end)
   return str
 }
 
-tb1p4x9zm4zyafjs9dg3vznc4euwlftzda8gyg4juwchsl3xl7y7jf3srt7yaf
-
+function charge_btc()
+{
+  var deposit_txid = prompt("Please enter your deposit txid", "txid")
+  var user = JSON.parse(localStorage.getItem('user'))
+  fetch("https://demoworld.ddns.net/depositBalance", {
+    method: "POST",
+    body: JSON.stringify({
+      "uid": user.uid,
+      "deposit_txid": deposit_txid
+    }),
+  })
+  .then(((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      alert("Error: "+response.status)
+      return response.json();
+    }
+  }))
+  .then((result) => {
+    console.log(result)});
+}
