@@ -13,7 +13,7 @@ function getUserInfo(inscription_address){
   })  
   .then((result) => {
     if (result.status === 200){
-      localStorage.setItem('user', JSON.parse(JSON.stringify(result.data)));
+      localStorage.setItem('user', JSON.stringify(result.data));
     } else if (result.status === 201){
       alert("Please check your inscription address.");
     }
@@ -363,7 +363,7 @@ function firstInscription(){
   var cnt = 0
   var temp = ""
   var user = JSON.parse(localStorage.getItem('user'))
-  var address = user.address
+  var address = user.inscription_address
 
   cnt = address.charCodeAt(0)%4
   var race = "0x"+cnt.toString(16)
