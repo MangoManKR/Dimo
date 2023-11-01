@@ -236,25 +236,27 @@ function signUp(username, inscription_address){
   }
 }
 
-function demo_image(num)
+function demo_image()
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
+  var cnt = JSON.parse(localStorage.getItem('cnt'))
   if (demo === null){
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
     //document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
-    demo = demo[num]
+    demo = demo[cnt]
     demo = JSON.parse(demo.content)
     document.getElementById("demo_img").src = "data:image/png;base64,"+demo.image
     document.getElementById("demo_img").style.filter = generate_filter(demo.status.main_color.replace('0x','#'))
   }
 }
 
-function demo_status(num)
+function demo_status()
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
+  var cnt = JSON.parse(localStorage.getItem('cnt'))
   if (demo === null){
     document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
@@ -263,7 +265,7 @@ function demo_status(num)
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
     document.getElementById("d_status3").innerText = "Or send your inscription to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427.";
   } else {
-    demo = demo[num]
+    demo = demo[cnt]
     demo = JSON.parse(demo.content)
     var sex = ""
     var health = ""
@@ -354,6 +356,7 @@ function test(username, inscription_address){
 function logout(){
   localStorage.setItem('user', null);
   localStorage.setItem('demo', null);
+  localStorage.setItem('cnt', 0);
   location.href = "index.html";
 }
 
@@ -633,6 +636,33 @@ function interaction_demo()
     //display
     document.getElementById("interact").style.display = "block"
     document.getElementById("prev-next").style.display = "none"
+
+    var egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"
+    var broken_egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAlUlEQVQoz2OgHPB/gDIsZKCMBDYo4wAzhGZsYGwAM5iBYmAGG1AVmMHCwKAAZvAwMBiAGRwMDAKoDAkwYgBzOVAZBmCNDGBDWCAihw9DRCSfpc+AOFDH5APEUgmJBAb6AIQzLJ+lzwEz9HVMvoAZahISKXA3k8SAexkeCPDwQYQhIlQR4YwIeURcMDxgh7rV/g/Z3gQAMT0X1xTBxjYAAAAASUVORK5CYII="
+    var dragon_1 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAACVBMVEX///8AAAAGBgbF5ddcAAAAvElEQVQ4y8WSsQrDMAxE5WLtalH+R4VmVyD6nw798OJmyAmBt7YiNvhFXOLT0X8rIp/Zmieg48FyIsZzs7FQ4uhKEllExtazZla1j/IENDt3gncTwPAtgj8Q6HB2ho5231WXu4Ff6qzo2bJFrDv64cPFGaDb8/JKpm/WVkfgxzpLuvQ0t9ERM0BX6Q+aA2cA9fp8XB8ci+4sISfQZs1UiqdfAnWUddg1HzVjNYU1pzXJNeu0Ey2ExRFOP6w3kRcaoCbxO7EAAAAASUVORK5CYII="
+    var dragon_2 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAADFBMVEX///8AAADg4OC6urrtNPhOAAAAyUlEQVQ4y+3QMQ7CMAwF0P9RvAfJuY8Z2I1U35wDESAJCUggsbDw2w59im3F+GEIW/+POK0S9VlSsL0H1hJbIZ6gfi/gCyQifwR/27Q8Qx6gd9hn0G6lOk7QeIhA6aDiUpB4aBCumgRKtimGLJqQO1x70hW5l5QIhTts7ElBK8ZaiTHXuAnoA+orgcgzgGETFAC7vgRuwG2g4B45g5wui5SAwLRpqSXVQEOXBvNSc2vRYvDKjpFNLCLwiESYThV9+JqXE+7455tcAPhVGYUu2ueBAAAAAElFTkSuQmCC"
+    var dragon_3 ="iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAA7UlEQVQoz9XNL2/CQByH8W97Te+W3NrL1G1ZaF/ChZn9SVjlkvECJiaa7AWscyxB1M0tSAThNfASTqFQaMTxDqpIBYLm1yoS8Dzq4x6cL/OPwBy3BGOkJCRVXIPSGm1J3cHIDmlwAhJ5CNOgh7cbjBq8lMO+t2nw44Z9/t/AjTN/wAHPJo7XrAQreRE5z4KDrd8tHCJwrR0KSDxL8wkDzZdx9eU0kn0gVPpaA5BGGrqKIlKExyq+J3wvrneEcRUPCL+TqzmBKWEJgRLpCYRa5wRfqIzgrR7KFmHe4W/bArMntE1vO3zcHWPUwyV0AHJnMXiYX/iTAAAAAElFTkSuQmCC"
+    var dragon_4 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAABjElEQVQoz2XLMWgUQRSA4X92JnsrjjcXA7KSwC2HheWcglwheEWKVNZiNUEIFoIKFhaBjIrxCoVgGu2CWFhaWs4REK20tlpRLCSlxaHHrTOXpMpr3sfj/Zyc1jHk5AjZ3SOZVTObY2E2NT5B7YbCJTzdpbCU8OIscQ3gcy/hNrgMCtagUgkjsMo0A/EcSrUiaqlgpGKRR3zUF0Gvwq0ipuUvGExi2n8D7eIT/OiBfP0KsX0ZuN9B6kVg6ZrXZcKlqn7oznvYcN1HofDIn8PWM7Rn8yAwRXnGHzwWFZB9jyYfkvchJxui1kH4iCKCWjiKcQesqDj13YEWe5yuQvreo209SHbQi4+BsAPLCnA3oK0Buwb5MrByh/jkwVyAIvVn3kJZW8j/QOd9CdkDWCrbIK/AOS1HiJexlHyFb4DwFn4DuA7cTBhU1SG6leN6wnod2EjYdzU9qMT2vqWCd2bhyUFE9td8ybsRcsamMvUcZnIPl0ArMJzjKoSIdBAeMWUKxsNka9w0/4CtpoGc/3mSZrFaHOmNAAAAAElFTkSuQmCC"
+    var current_img = current_status.image
+
+    if (current_img === egg){
+      alert("It's an egg.")
+    } else if (current_img === broken_egg){
+      alert("It's a broken egg.")
+    }
+    else if (current_img === dragon_1){
+      alert("It's a baby dragon.")
+    }
+    else if (current_img === dragon_2){
+      alert("It's a young dragon.")
+    }
+    else if (current_img === dragon_3){
+      alert("It's a adult dragon.")
+    }
+    else if (current_img === dragon_4){
+      alert("It's a elder dragon.")
+    }
+
   }
 }
 
@@ -689,7 +719,7 @@ function save()
     }
   }))
   .then((result) => {
-    alert(response.msg)
+    alert(result.msg)
     getDeMoList(user.uid)
     demo_image(0)
     demo_status(0)
@@ -745,4 +775,8 @@ function history(){
   }else{
     btn2.style.visibility = 'visible';
   } 
+
+  //display
+  document.getElementById("interact").style.display = "none"
+  document.getElementById("prev-next").style.display = "block"
 }
