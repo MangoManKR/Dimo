@@ -34,7 +34,7 @@
 					<nav id="tab-button-nav">
 						<button class="tab-button" data-tab-section="tab-section-1">Main</button>
 						<button class="tab-button" data-tab-section="tab-section-2">Battle</button>
-						<button class="tab-button" data-tab-section="tab-section-3">Interact</button>
+						<button class="tab-button" data-tab-section="tab-section-3">User Info</button>
 					</nav>
 					<section id="tab-section-1" class="tab-section">
 						<p id = "d_status1"></p>
@@ -52,7 +52,10 @@
 						<p id = "d_status11"></p>
 					</section>
 					<section id="tab-section-3" class="tab-section" hidden>
-						<div></div>
+						<p id = "u_status1"></p>
+						<p id = "u_status2"></p>
+						<p id = "u_status3"></p>
+						<p id = "u_status4"></p>
 					</section>
 					<nav id="prev-next" style="position: absolute; right: 15px; bottom: 15px;">
 						<button id = "prev_btn" onclick="history_prev()">Prev</button>
@@ -94,7 +97,7 @@
 					<li><a id = "order_btn" onclick="firstInscription()" class="bt-icon icon-download">Order</a></li>
 					<li><a id = "wallet_btn" onclick="charge_btc()" class="bt-icon icon-browser">Charge</a></li>
 					<li><a id = "interact_btn" href="#" class="bt-icon icon-star">Interact</a></li>
-					<li><a id = "history_btn" href="#" class="bt-icon icon-picture">History</a></li>
+					<li><a id = "history_btn" href="#" class="bt-icon icon-picture">Save</a></li>
 					<li><a id = "disconnect_btn" onclick="logout()" class="bt-icon icon-enter">Disconnect</a></li>
 				</ul>
 			</nav>

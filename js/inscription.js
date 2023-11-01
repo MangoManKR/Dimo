@@ -53,13 +53,15 @@ function getDeMoList(uid){
   fetch("https://demoworld.ddns.net/getDeMoList?uid="+uid)
   .then(((response) => {
     if (response.status === 200) {
-      localStorage.setItem('demo', JSON.stringify(response.data.json()));
+      return response.json();
     } else {
       alert("Error: "+response.status)
       return response.json();
     }
   }))
-  .then((result) => console.log(result));
+  .then((result) => {
+    localStorage.setItem('demo', JSON.stringify(result.data.json()));
+    console.log(result)});
 }
 
 function getInscription(inscription_id){
@@ -302,6 +304,18 @@ function demo_status(num)
   console.log("called")
 }
 
+function user_info(){
+  var user = JSON.parse(localStorage.getItem('user'))
+  var inscription_address = user.inscription_address
+  var username = user.username
+  var uid = user.uid
+  var balance = user.balance
+  document.getElementById("u_status1").innerText = "User ID: " + username
+  document.getElementById("u_status2").innerText = "User Name: " + inscription_address
+  document.getElementById("u_status3").innerText = "Inscription Address: " + uid
+  document.getElementById("u_status4").innerText = "Balance: " + balance  + " BTC"
+}
+
 function test(username, inscription_address){
   fetch("https://demoworld.ddns.net/registerUser", {
     method: "POST",
@@ -357,7 +371,9 @@ function charge(){
       alert("Error: "+response.status)
     }
   }))
-  .then((result) => console.log(result));
+  .then((result) => {
+    alert(result.msg)
+    console.log(result)});
   }
 }
 
@@ -433,17 +449,18 @@ function firstInscription(){
   })
   .then(((response) => {
     if (response.status === 200) {
-      console.log()
-      alert(response.msg)
-      demo_image(0)
-      demo_status(0)
       return response.json();
     } else {
       alert("Error: "+response.status)
       return response.json();
     }
   }))
-  .then((result) => console.log(result));
+  .then((result) => {
+    alert(response.msg)
+    getDeMoList(user.uid)
+    demo_image(0)
+    demo_status(0)
+    console.log(result)});
 }
 
 
@@ -487,6 +504,9 @@ function organ_adress(address, start, end)
 
 function charge_btc()
 {
+  if (confirm("Open leather website.\nPlease send btc to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427\n (It will be copied at your clipboard.) \nAnd type txid.")){
+    window.navigator.clipboard.writeText("tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427")
+    window.open("https://leather.io/","_blank", "width=500, height=500")}
   var deposit_txid = prompt("Please enter your deposit txid", "txid")
   var user = JSON.parse(localStorage.getItem('user'))
   fetch("https://demoworld.ddns.net/depositBalance", {
@@ -554,7 +574,89 @@ function sendToWallet()
     }
   }))
   .then((result) => {
-    alert(result.msg)
+    alert(result.msg + "\nPlease wait for a while." + "\ntxid: " + result.data.txid)
     console.log(result)});
 }
 
+function evolve(){
+
+}
+
+function interaction_demo()
+{
+  var cnt = Number(localStorage.getItem("cnt"))
+  var user = JSON.parse(localStorage.getItem('user'))
+  var demo = JSON.parse(localStorage.getItem('demo'))
+  var demo_current = demo[demo.length-1]
+  if (cnt !== demo.length-1)
+  {
+    alert("You can interact with only the latest DeMo.")
+  } else {
+    var current_status = JSON.parse(localStorage.getItem("current_status"))
+    if (current_status === null){
+      localStorage.setItem("current_status", demo_current.content)
+      current_status = JSON.parse(demo_current.content)
+    }
+  }
+}
+
+function save()
+{
+  var cnt = Number(localStorage.getItem("cnt"))
+  var user = JSON.parse(localStorage.getItem('user'))
+  var demo = JSON.parse(localStorage.getItem('demo'))
+  var demo_current = demo[demo.length-1]
+  var current_status = JSON.parse(localStorage.getItem("current_status"))
+    if (current_status === null){
+      localStorage.setItem("current_status", demo_current.content)
+      current_status = JSON.parse(demo_current.content)
+    }
+
+  if (current_status === demo.content){
+    alert("You didn't change anything.")
+  } else {
+    fetch("https://demoworld.ddns.net/makeInscription", {
+    method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
+    body: JSON.stringify({
+      "json_data": {
+        "image": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC",
+        "status": {
+          "name": current_status.name,
+          "demo_id": Number(current_status.demo_id) + 1,
+            "sex": current_status.sex,
+            "height": current_status.height,
+            "weight": current_status.weight,
+            "health": current_status.health,
+            "race": current_status.race,
+            "main_color": current_status.main_color,
+            "pattern_color": current_status.pattern_color,
+            "pattern": "0xf",
+            "str": current_status.str,
+            "dex": current_status.dex,
+            "int": current_status.int,
+            "luc": current_status.luc,
+            "prev_inscription": demo_current.demo_id
+      },
+      },
+      "uid": user.uid
+    }),
+  })
+  .then(((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      alert("Error: "+response.status)
+      return response.json();
+    }
+  }))
+  .then((result) => {
+    alert(response.msg)
+    getDeMoList(user.uid)
+    demo_image(0)
+    demo_status(0)
+    console.log(result)});
+  }
+}
