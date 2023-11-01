@@ -434,6 +434,9 @@ function firstInscription(){
   .then(((response) => {
     if (response.status === 200) {
       console.log()
+      alert(response.msg)
+      demo_image(0)
+      demo_status(0)
       return response.json();
     } else {
       alert("Error: "+response.status)
@@ -541,16 +544,7 @@ function sendToWallet()
   var demo = JSON.parse(localStorage.getItem('demo'))
   demo = demo[cnt]
 
-  fetch("https://demoworld.ddns.net/claimInscription", {
-    method: "POST",
-    headers : {               //데이터 타입 지정
-      "Content-Type":"application/json; charset=utf-8"
-  },
-    body: JSON.stringify({
-      "uid": user.uid,
-      "demo_id": demo.demo_id
-    }),
-  })
+  fetch("https://demoworld.ddns.net/claimInscription?uid="+user.uid+"&demo_id="+demo.demo_id)
   .then(((response) => {
     if (response.status === 200) {
       return response.json();
@@ -562,6 +556,5 @@ function sendToWallet()
   .then((result) => {
     alert(result.msg)
     console.log(result)});
-
-
 }
+
