@@ -460,7 +460,7 @@ function firstInscription(){
     }
   }))
   .then((result) => {
-    alert(response.msg)
+    alert(result.msg)
     getDeMoList(user.uid)
     demo_image(0)
     demo_status(0)
@@ -729,8 +729,6 @@ function history(){
 
 	const btn1 = document.getElementById('prev_btn');
   const btn2 = document.getElementById('next_btn')
-
-	  
 
 	// btn1 숨기기 (visibility: hidden)
 
