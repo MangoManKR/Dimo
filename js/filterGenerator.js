@@ -296,11 +296,17 @@ function hexToRgb(hex) {
 
 function generate_filter(hex){
     console.log("called filter")
-    const rgb = hexToRgb(hex);
-    const color = new Color(rgb[0], rgb[1], rgb[2]);
-    const solver = new Solver(color);
-    const result = solver.solve();
-    console.log(result.filter)
+    while(true){
+      const rgb = hexToRgb(hex);
+      const color = new Color(rgb[0], rgb[1], rgb[2]);
+      const solver = new Solver(color);
+      const result = solver.solve();
+      if (result.loss < 1) {
+        console.log(result)
+        return result.filter;
+      }
+    }
+    
     //document.getElementById("demo_img").style.filter = result.filter;
-    return result.filter;
+    
 }

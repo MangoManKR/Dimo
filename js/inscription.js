@@ -258,6 +258,10 @@ function demo_status(num)
   if (demo === null){
     document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
+  } else if (demo.length === 0){
+    document.getElementById("d_status1").innerText = 'You don\'t have any demo.';
+    document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
+    document.getElementById("d_status3").innerText = "Or send your inscription to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427.";
   } else {
     demo = demo[num]
     demo = JSON.parse(demo.content)
@@ -310,9 +314,9 @@ function user_info(){
   var username = user.username
   var uid = user.uid
   var balance = user.balance
-  document.getElementById("u_status1").innerText = "User ID: " + username
-  document.getElementById("u_status2").innerText = "User Name: " + inscription_address
-  document.getElementById("u_status3").innerText = "Inscription Address: " + uid
+  document.getElementById("u_status1").innerText = "User ID: " + uid
+  document.getElementById("u_status2").innerText = "User Name: " + username
+  document.getElementById("u_status3").innerText = "Inscription Address: " + inscription_address
   document.getElementById("u_status4").innerText = "Balance: " + balance  + " BTC"
 }
 
@@ -505,7 +509,7 @@ function organ_adress(address, start, end)
 function charge_btc()
 {
   if (confirm("Open leather website.\nPlease send btc to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427\n (It will be copied at your clipboard.) \nAnd type txid.")){
-    window.navigator.clipboard.writeText("tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427")
+    clipboard("tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427")
     window.open("https://leather.io/","_blank", "width=500, height=500")}
   var deposit_txid = prompt("Please enter your deposit txid", "txid")
   var user = JSON.parse(localStorage.getItem('user'))
@@ -559,10 +563,9 @@ function history_next(){
 
 function sendToWallet()
 {
-  var cnt = Number(localStorage.getItem("cnt"))
   var user = JSON.parse(localStorage.getItem('user'))
   var demo = JSON.parse(localStorage.getItem('demo'))
-  demo = demo[cnt]
+  demo = demo[demo.length-1]
 
   fetch("https://demoworld.ddns.net/claimInscription?uid="+user.uid+"&demo_id="+demo.demo_id)
   .then(((response) => {
@@ -579,11 +582,40 @@ function sendToWallet()
 }
 
 function evolve(){
+  var egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"
+  var broken_egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAlUlEQVQoz2OgHPB/gDIsZKCMBDYo4wAzhGZsYGwAM5iBYmAGG1AVmMHCwKAAZvAwMBiAGRwMDAKoDAkwYgBzOVAZBmCNDGBDWCAihw9DRCSfpc+AOFDH5APEUgmJBAb6AIQzLJ+lzwEz9HVMvoAZahISKXA3k8SAexkeCPDwQYQhIlQR4YwIeURcMDxgh7rV/g/Z3gQAMT0X1xTBxjYAAAAASUVORK5CYII="
+  var dragon_1 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAACVBMVEX///8AAAAGBgbF5ddcAAAAvElEQVQ4y8WSsQrDMAxE5WLtalH+R4VmVyD6nw798OJmyAmBt7YiNvhFXOLT0X8rIp/Zmieg48FyIsZzs7FQ4uhKEllExtazZla1j/IENDt3gncTwPAtgj8Q6HB2ho5231WXu4Ff6qzo2bJFrDv64cPFGaDb8/JKpm/WVkfgxzpLuvQ0t9ERM0BX6Q+aA2cA9fp8XB8ci+4sISfQZs1UiqdfAnWUddg1HzVjNYU1pzXJNeu0Ey2ExRFOP6w3kRcaoCbxO7EAAAAASUVORK5CYII="
+  var dragon_2 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAADFBMVEX///8AAADg4OC6urrtNPhOAAAAyUlEQVQ4y+3QMQ7CMAwF0P9RvAfJuY8Z2I1U35wDESAJCUggsbDw2w59im3F+GEIW/+POK0S9VlSsL0H1hJbIZ6gfi/gCyQifwR/27Q8Qx6gd9hn0G6lOk7QeIhA6aDiUpB4aBCumgRKtimGLJqQO1x70hW5l5QIhTts7ElBK8ZaiTHXuAnoA+orgcgzgGETFAC7vgRuwG2g4B45g5wui5SAwLRpqSXVQEOXBvNSc2vRYvDKjpFNLCLwiESYThV9+JqXE+7455tcAPhVGYUu2ueBAAAAAElFTkSuQmCC"
+  var dragon_3 ="iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAA7UlEQVQoz9XNL2/CQByH8W97Te+W3NrL1G1ZaF/ChZn9SVjlkvECJiaa7AWscyxB1M0tSAThNfASTqFQaMTxDqpIBYLm1yoS8Dzq4x6cL/OPwBy3BGOkJCRVXIPSGm1J3cHIDmlwAhJ5CNOgh7cbjBq8lMO+t2nw44Z9/t/AjTN/wAHPJo7XrAQreRE5z4KDrd8tHCJwrR0KSDxL8wkDzZdx9eU0kn0gVPpaA5BGGrqKIlKExyq+J3wvrneEcRUPCL+TqzmBKWEJgRLpCYRa5wRfqIzgrR7KFmHe4W/bArMntE1vO3zcHWPUwyV0AHJnMXiYX/iTAAAAAElFTkSuQmCC"
+  var dragon_4 = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAABjElEQVQoz2XLMWgUQRSA4X92JnsrjjcXA7KSwC2HheWcglwheEWKVNZiNUEIFoIKFhaBjIrxCoVgGu2CWFhaWs4REK20tlpRLCSlxaHHrTOXpMpr3sfj/Zyc1jHk5AjZ3SOZVTObY2E2NT5B7YbCJTzdpbCU8OIscQ3gcy/hNrgMCtagUgkjsMo0A/EcSrUiaqlgpGKRR3zUF0Gvwq0ipuUvGExi2n8D7eIT/OiBfP0KsX0ZuN9B6kVg6ZrXZcKlqn7oznvYcN1HofDIn8PWM7Rn8yAwRXnGHzwWFZB9jyYfkvchJxui1kH4iCKCWjiKcQesqDj13YEWe5yuQvreo209SHbQi4+BsAPLCnA3oK0Buwb5MrByh/jkwVyAIvVn3kJZW8j/QOd9CdkDWCrbIK/AOS1HiJexlHyFb4DwFn4DuA7cTBhU1SG6leN6wnod2EjYdzU9qMT2vqWCd2bhyUFE9td8ybsRcsamMvUcZnIPl0ArMJzjKoSIdBAeMWUKxsNka9w0/4CtpoGc/3mSZrFaHOmNAAAAAElFTkSuQmCC"
 
+  var demo = JSON.parse(localStorage.getItem('demo'))
+  var demo_current = demo[demo.length-1].content
+  var current_status = JSON.parse(localStorage.getItem("current_status"))
+    if (current_status === null){
+      localStorage.setItem("current_status", demo_current.content)
+      current_status = JSON.parse(demo_current.content)
+    }
+  
+    if (current_status.image === egg){ current_status.image = broken_egg}
+    else if (current_status.image === broken_egg){ current_status.image = dragon_1}
+    else if (current_status.image === dragon_1){ current_status.image = dragon_2}
+    else if (current_status.image === dragon_2){ current_status.image = dragon_3}
+    else if (current_status.image === dragon_3){ current_status.image = dragon_4}
+    
+    current_status.status.str = "0x" + (parseInt(current_status.str,16) * 2).toString(16)
+    current_status.status.dex = "0x" + (parseInt(current_status.dex,16) * 2).toString(16)
+    current_status.status.int = "0x" + (parseInt(current_status.int,16) * 2).toString(16)
+    current_status.status.luc = "0x" + (parseInt(current_status.luc,16) * 2).toString(16)
+
+    current_status.status.weight = current_status.status.weight * 1.5
+    current_status.status.height = current_status.status.height * 1.5
+
+    localStorage.setItem("current_status", JSON.stringify(current_status))
 }
 
 function interaction_demo()
-{
+{ 
   var cnt = Number(localStorage.getItem("cnt"))
   var user = JSON.parse(localStorage.getItem('user'))
   var demo = JSON.parse(localStorage.getItem('demo'))
@@ -597,6 +629,10 @@ function interaction_demo()
       localStorage.setItem("current_status", demo_current.content)
       current_status = JSON.parse(demo_current.content)
     }
+    
+    //display
+    document.getElementById("interact").style.display = "block"
+    document.getElementById("prev-next").style.display = "none"
   }
 }
 
@@ -659,4 +695,56 @@ function save()
     demo_status(0)
     console.log(result)});
   }
+}
+
+function isEmptyArr(arr)  {
+  if(Array.isArray(arr) && arr.length === 0)  {
+    return true;
+  }
+  
+  return false;
+}
+
+function clipboard(text){
+  const copy = (text) => {
+    // 임시의 textarea 생성
+    const $textarea = document.createElement("textarea");
+  
+    // body 요소에 존재해야 복사가 진행됨
+    document.body.appendChild($textarea);
+    
+    // 복사할 특정 텍스트를 임시의 textarea에 넣어주고 모두 셀렉션 상태
+    $textarea.value = text;
+    $textarea.select();
+    
+    // 복사 후 textarea 지우기
+    document.execCommand('copy');
+    document.body.removeChild($textarea);
+  };
+  copy(text)
+}
+
+function history(){
+	// 토글 할 버튼 선택 (btn1)
+
+	const btn1 = document.getElementById('prev_btn');
+  const btn2 = document.getElementById('next_btn')
+
+	  
+
+	// btn1 숨기기 (visibility: hidden)
+
+	if(btn1.style.visibility !== 'hidden') {
+	  btn1.style.visibility = 'hidden';
+	}
+	  // btn` 보이기 (visibility: visible)
+	else {
+	  btn1.style.visibility = 'visible';
+	}
+
+  if(btn2.style.visibility !== 'hidden') {
+    btn2.style.visibility = 'hidden';
+  }else{
+    btn2.style.visibility = 'visible';
+  } 
 }

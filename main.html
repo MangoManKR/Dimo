@@ -57,16 +57,29 @@
 						<p id = "u_status3"></p>
 						<p id = "u_status4"></p>
 					</section>
+					<section id="tab-section-4" class="tab-section" hidden>
+						<p id = "u_status1"></p>
+						<p id = "u_status2"></p>
+						<p id = "u_status3"></p>
+						<p id = "u_status4"></p>
+					</section>
+					<nav id="interact" style="position: absolute; left: 15px; bottom: 15px;">
+						<button id = "yes_btn" onclick="yes()">Yes</button>
+						<button id = "no_btn"  onclick="no()">No</button>
+						<input id = "interaction_btn" style = "width: 10vh;"type="text" id="test" value="" />
+					</nav>
 					<nav id="prev-next" style="position: absolute; right: 15px; bottom: 15px;">
-						<button id = "prev_btn" onclick="history_prev()">Prev</button>
+
+						<button id = "prev_btn" style="visibility: hidden;" onclick="history_prev()">Prev</button>
 						<button id = "send_btn" onclick ="sendToWallet()">Send to My Wallet</button>
-						<button id = "next_btn" onclick="history_next()">Next</button>
+						<button id = "next_btn" style="visibility: hidden;" onclick="history_next()">Next</button>
 					</nav>
 				</contentside>
 				<script>
 					var demo = JSON.parse(localStorage.getItem("demo"));
 					demo_status(demo.length - 1)
 					demo_image(demo.length - 1)
+					user_info()
 					localStorage.setItem("cnt", demo.length - 1)
 				</script>
 				<script>
@@ -97,7 +110,7 @@
 					<li><a id = "order_btn" onclick="firstInscription()" class="bt-icon icon-download">Order</a></li>
 					<li><a id = "wallet_btn" onclick="charge_btc()" class="bt-icon icon-browser">Charge</a></li>
 					<li><a id = "interact_btn" href="#" class="bt-icon icon-star">Interact</a></li>
-					<li><a id = "history_btn" href="#" class="bt-icon icon-picture">Save</a></li>
+					<li><a id = "history_btn" onclick="history()" class="bt-icon icon-picture">History</a></li>
 					<li><a id = "disconnect_btn" onclick="logout()" class="bt-icon icon-enter">Disconnect</a></li>
 				</ul>
 			</nav>
