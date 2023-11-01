@@ -32,9 +32,9 @@
 					filter: auto;" alt="My Image" ></imgside>
 				<contentside id="d_content" onload="demo_status()">
 					<nav id="tab-button-nav">
-						<button class="tab-button" data-tab-section="tab-section-1">탭 1</button>
-						<button class="tab-button" data-tab-section="tab-section-2">탭 2</button>
-						<button class="tab-button" data-tab-section="tab-section-3">탭 3</button>
+						<button class="tab-button" data-tab-section="tab-section-1">Main</button>
+						<button class="tab-button" data-tab-section="tab-section-2">Battle</button>
+						<button class="tab-button" data-tab-section="tab-section-3">Interact</button>
 					</nav>
 					<section id="tab-section-1" class="tab-section">
 						<p id = "d_status1"></p>
@@ -52,15 +52,19 @@
 						<p id = "d_status11"></p>
 					</section>
 					<section id="tab-section-3" class="tab-section" hidden>
-						<div>탭 3 페이지</div>
+						<div></div>
 					</section>
+					<nav id="prev-next" style="position: absolute; right: 15px; bottom: 15px;">
+						<button id = "prev_btn" onclick="history_prev()">Prev</button>
+						<button id = "send_btn" onclick ="sendToWallet()">Send to My Wallet</button>
+						<button id = "next_btn" onclick="history_next()">Next</button>
+					</nav>
 				</contentside>
 				<script>
-					demo_status()
-					demo_image()
-					if (window.LeatherProvider){
-						console.log("Ddd")
-					}
+					var demo = JSON.parse(localStorage.getItem("demo"));
+					demo_status(demo.length - 1)
+					demo_image(demo.length - 1)
+					localStorage.setItem("cnt", demo.length - 1)
 				</script>
 				<script>
 					const $nav = document.querySelector('#tab-button-nav')

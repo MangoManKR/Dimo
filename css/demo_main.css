@@ -25,6 +25,7 @@ imgside {
     background-color: rgba(255, 255, 255, 0.5);
     float: left;
 	font: 1em sans-serif;
+	position: relative;
  }
 
 contentside{
@@ -35,6 +36,7 @@ contentside{
     float: left;
 	color: black;
 	padding: 15px;
+	position: relative;
 }
 
 .demo_img{

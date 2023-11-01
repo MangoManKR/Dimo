@@ -234,7 +234,7 @@ function signUp(username, inscription_address){
   }
 }
 
-function demo_image()
+function demo_image(num)
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
@@ -242,14 +242,14 @@ function demo_image()
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
     //document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
-    demo = demo[demo.length - 1]
+    demo = demo[num]
     demo = JSON.parse(demo.content)
     document.getElementById("demo_img").src = "data:image/png;base64,"+demo.image
     document.getElementById("demo_img").style.filter = generate_filter(demo.status.main_color.replace('0x','#'))
   }
 }
 
-function demo_status()
+function demo_status(num)
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
@@ -257,7 +257,7 @@ function demo_status()
     document.getElementById("d_status1").innerText = 'You don\'t have any demo yet.';
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
   } else {
-    demo = demo[demo.length - 1]
+    demo = demo[num]
     demo = JSON.parse(demo.content)
     var sex = ""
     var health = ""
@@ -433,6 +433,7 @@ function firstInscription(){
   })
   .then(((response) => {
     if (response.status === 200) {
+      console.log()
       return response.json();
     } else {
       alert("Error: "+response.status)
@@ -505,4 +506,62 @@ function charge_btc()
   }))
   .then((result) => {
     console.log(result)});
+}
+
+function history_prev(){
+  var cnt = Number(localStorage.getItem("cnt"))
+  if (cnt === 0)
+  {
+    alert("This is the first DeMo.")
+  } else {
+    demo_image(cnt-1)
+    demo_status(cnt-1)
+    localStorage.setItem("cnt", cnt-1)
+  }
+}
+
+function history_next(){
+  var cnt = Number(localStorage.getItem("cnt"))
+  var demo = localStorage.getItem('demo')
+  demo = JSON.parse(demo)
+  if (cnt === demo.length-1)
+  {
+    alert("This is the last DeMo.")
+  } else {
+    demo_image(cnt+1)
+    demo_status(cnt+1)
+    localStorage.setItem("cnt", cnt+1)
+  }
+}
+
+function sendToWallet()
+{
+  var cnt = Number(localStorage.getItem("cnt"))
+  var user = JSON.parse(localStorage.getItem('user'))
+  var demo = JSON.parse(localStorage.getItem('demo'))
+  demo = demo[cnt]
+
+  fetch("https://demoworld.ddns.net/claimInscription", {
+    method: "POST",
+    headers : {               //데이터 타입 지정
+      "Content-Type":"application/json; charset=utf-8"
+  },
+    body: JSON.stringify({
+      "uid": user.uid,
+      "demo_id": demo.demo_id
+    }),
+  })
+  .then(((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      alert("Error: "+response.status)
+      return response.json();
+    }
+  }))
+  .then((result) => {
+    alert(result.msg)
+    console.log(result)});
+
+
 }
