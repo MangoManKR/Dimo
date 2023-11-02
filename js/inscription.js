@@ -358,6 +358,7 @@ function logout(){
   localStorage.setItem('user', null);
   localStorage.setItem('demo', null);
   localStorage.setItem('cnt', 0);
+  localStorage.removeItem('current_status');
   location.href = "index.html";
 }
 
@@ -757,6 +758,7 @@ function save()
       localStorage.setItem("current_status", demo_current.content)
       current_status = JSON.parse(demo_current.content)
     }
+    current_status = current_status.status
 
   if (current_status === demo.content){
     alert("You didn't change anything.")
