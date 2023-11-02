@@ -678,14 +678,14 @@ function interaction_demo()
       document.getElementById("i_text4").innerHTML = "Please enter today's activity."
     }
     else if (current_img === dragon_3){
-      document.getElementById("i_text1").innerHTML = "Your DeMo is now adolescent"
-      document.getElementById("i_text2").innerHTML = "Your DeMo wants to compete with you"
+      document.getElementById("i_text1").innerHTML = "Your DeMo is now adolescent."
+      document.getElementById("i_text2").innerHTML = "Your DeMo wants to compete with you."
       document.getElementById("i_text3").innerHTML = "You decided to play rock-paper-scissors!"
       document.getElementById("i_text4").innerHTML = "Please enter your choice."
     }
     else if (current_img === dragon_4){
-      document.getElementById("i_text1").innerHTML = "Your DeMo is now an elder dragon"
-      document.getElementById("i_text2").innerHTML = "Your DeMo wants to travel with you"
+      document.getElementById("i_text1").innerHTML = "Your DeMo is now an elder dragon."
+      document.getElementById("i_text2").innerHTML = "Your DeMo wants to travel with you."
       document.getElementById("i_text3").innerHTML = "Please enter your favorite place."
       document.getElementById("i_text4").innerHTML = "Please enter your choice."
     }
