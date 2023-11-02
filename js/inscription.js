@@ -745,8 +745,6 @@ function interaction_user()
       save()
     } else if (current_img === dragon_4){
       alert("Have a good time with DeMo in " + user_input + "!")
-      evolve()
-      save()
     }
   }
 
