@@ -638,9 +638,9 @@ function interaction_demo()
     document.getElementById("interact").style.display = "block"
     document.getElementById("prev-next").style.display = "none"
 
-    document.getElementById("tab-section-1").setAttribute('hidden')
-    document.getElementById("tab-section-2").setAttribute('hidden')
-    document.getElementById("tab-section-3").setAttribute('hidden')
+    document.getElementById("tab-section-1").setAttribute('hidden', true)
+    document.getElementById("tab-section-2").setAttribute('hidden', true)
+    document.getElementById("tab-section-3").setAttribute('hidden', true)
     document.getElementById("tab-section-4").removeAttribute('hidden')
 
 
@@ -740,9 +740,9 @@ function interaction_user()
   }
 
   document.getElementById("tab-section-1").removeAttribute('hidden')
-  document.getElementById("tab-section-2").setAttribute('hidden')
-  document.getElementById("tab-section-3").setAttribute('hidden')
-  document.getElementById("tab-section-4").setAttribute('hidden')
+  document.getElementById("tab-section-2").setAttribute('hidden', true)
+  document.getElementById("tab-section-3").setAttribute('hidden', true)
+  document.getElementById("tab-section-4").setAttribute('hidden', true)
 
 }
 
