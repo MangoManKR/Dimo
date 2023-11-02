@@ -608,10 +608,10 @@ function evolve(){
     else if (current_status.image === dragon_2){ current_status.image = dragon_3}
     else if (current_status.image === dragon_3){ current_status.image = dragon_4}
     
-    current_status.status.str = "0x" + (parseInt(current_status.str,16) * 2).toString(16)
-    current_status.status.dex = "0x" + (parseInt(current_status.dex,16) * 2).toString(16)
-    current_status.status.int = "0x" + (parseInt(current_status.int,16) * 2).toString(16)
-    current_status.status.luc = "0x" + (parseInt(current_status.luc,16) * 2).toString(16)
+    current_status.status.str = "0x" + (parseInt(current_status.status.str,16) * 2).toString(16)
+    current_status.status.dex = "0x" + (parseInt(current_status.status.dex,16) * 2).toString(16)
+    current_status.status.int = "0x" + (parseInt(current_status.status.int,16) * 2).toString(16)
+    current_status.status.luc = "0x" + (parseInt(current_status.status.luc,16) * 2).toString(16)
 
     current_status.status.weight = current_status.status.weight * 1.5
     current_status.status.height = current_status.status.height * 1.5
