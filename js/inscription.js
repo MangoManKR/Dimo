@@ -602,8 +602,6 @@ function evolve(){
       current_status = JSON.parse(demo_current.content)
     }
   
-    current_status = current_status.status
-
     if (current_status.image === egg){ current_status.image = broken_egg}
     else if (current_status.image === broken_egg){ current_status.image = dragon_1}
     else if (current_status.image === dragon_1){ current_status.image = dragon_2}
@@ -760,7 +758,6 @@ function save()
       localStorage.setItem("current_status", demo_current.content)
       current_status = JSON.parse(demo_current.content)
     }
-    current_status = current_status.status
 
   if (current_status === demo.content){
     alert("You didn't change anything.")
@@ -772,23 +769,23 @@ function save()
   },
     body: JSON.stringify({
       "json_data": {
-        "image": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC",
+        "image": current_status.image,
         "status": {
-          "name": current_status.name,
-          "demo_id": Number(current_status.demo_id) + 1,
-            "sex": current_status.sex,
-            "height": current_status.height,
-            "weight": current_status.weight,
-            "health": current_status.health,
-            "race": current_status.race,
-            "main_color": current_status.main_color,
-            "pattern_color": current_status.pattern_color,
+          "name": current_status.status.name,
+          "demo_id": Number(current_status.status.demo_id) + 1,
+            "sex": current_status.status.sex,
+            "height": current_status.status.height,
+            "weight": current_status.status.weight,
+            "health": current_status.status.health,
+            "race": current_status.status.race,
+            "main_color": current_status.status.main_color,
+            "pattern_color": current_status.status.pattern_color,
             "pattern": "0xf",
-            "str": current_status.str,
-            "dex": current_status.dex,
-            "int": current_status.int,
-            "luc": current_status.luc,
-            "prev_inscription": demo_current.demo_id
+            "str": current_status.status.str,
+            "dex": current_status.status.dex,
+            "int": current_status.status.int,
+            "luc": current_status.status.luc,
+            "prev_inscription": demo_current.recent_inscription_id
       },
       },
       "uid": user.uid
