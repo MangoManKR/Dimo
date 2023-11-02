@@ -178,6 +178,7 @@ function login(inscription_address){
       .then((result) => {
         if (result.status === 200){
           localStorage.setItem('demo', JSON.stringify(result.data));
+          localStorage.setItem('cnt', result.data.length-1); 
           location.href = "main.html";
         } else if (result.status === 201){
           confirm("You don't have any DeMo yet.");
@@ -715,7 +716,19 @@ function interaction_user()
         alert("You set the temperature well.")
         evolve()
         save()
+      } else {
+        alert("You didn't set the temperature well.")
       }
+    } else if (current_img === broken_egg){
+      alert("DeMo is hatching from the egg!")
+      evolve()
+      save()
+    } else if (current_img === dragon_1){
+      alert("You fed " + user_input + " to DeMo.")
+      evolve()
+      save()
+    } else if (current_img === dragon_2){
+      alert("Your DeMo is intrigued by " + user_input + "!")
     }
   }
 }
