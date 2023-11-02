@@ -602,6 +602,8 @@ function evolve(){
       current_status = JSON.parse(demo_current.content)
     }
   
+    current_status = current_status.status
+
     if (current_status.image === egg){ current_status.image = broken_egg}
     else if (current_status.image === broken_egg){ current_status.image = dragon_1}
     else if (current_status.image === dragon_1){ current_status.image = dragon_2}
