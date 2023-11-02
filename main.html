@@ -77,8 +77,8 @@
 				</contentside>
 				<script>
 					var demo = JSON.parse(localStorage.getItem("demo"));
-					demo_status()
-					demo_image()
+					demo_status(localStorage.getItem("cnt"))
+					demo_image(localStorage.getItem("cnt"))
 					user_info()
 					localStorage.setItem("cnt", demo.length - 1)
 				</script>

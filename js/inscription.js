@@ -802,6 +802,7 @@ function save()
     getDeMoList(user.uid)
     localStorage.setItem("cnt", cnt+1)
     var cnt = localStorage.getItem("cnt")
+    
     demo_image(cnt)
     demo_status(cnt)
     console.log(result)});
