@@ -545,8 +545,8 @@ function history_prev(){
   {
     alert("This is the first DeMo.")
   } else {
-    demo_image(cnt-1)
-    demo_status(cnt-1)
+    demo_image()
+    demo_status()
     localStorage.setItem("cnt", cnt-1)
   }
 }
@@ -559,8 +559,8 @@ function history_next(){
   {
     alert("This is the last DeMo.")
   } else {
-    demo_image(cnt+1)
-    demo_status(cnt+1)
+    demo_image()
+    demo_status()
     localStorage.setItem("cnt", cnt+1)
   }
 }
@@ -637,6 +637,9 @@ function interaction_demo()
     //display
     document.getElementById("interact").style.display = "block"
     document.getElementById("prev-next").style.display = "none"
+
+    
+
 
     var egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"
     var broken_egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAlUlEQVQoz2OgHPB/gDIsZKCMBDYo4wAzhGZsYGwAM5iBYmAGG1AVmMHCwKAAZvAwMBiAGRwMDAKoDAkwYgBzOVAZBmCNDGBDWCAihw9DRCSfpc+AOFDH5APEUgmJBAb6AIQzLJ+lzwEz9HVMvoAZahISKXA3k8SAexkeCPDwQYQhIlQR4YwIeURcMDxgh7rV/g/Z3gQAMT0X1xTBxjYAAAAASUVORK5CYII="
