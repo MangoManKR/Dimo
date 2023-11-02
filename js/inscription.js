@@ -60,7 +60,7 @@ function getDeMoList(uid){
     }
   }))
   .then((result) => {
-    localStorage.setItem('demo', JSON.stringify(result.data.json()));
+    localStorage.setItem('demo', JSON.stringify(result.data));
     console.log(result)});
 }
 
@@ -638,7 +638,11 @@ function interaction_demo()
     document.getElementById("interact").style.display = "block"
     document.getElementById("prev-next").style.display = "none"
 
-    
+    document.getElementById("tab-section-1").setAttribute('hidden')
+    document.getElementById("tab-section-2").setAttribute('hidden')
+    document.getElementById("tab-section-3").setAttribute('hidden')
+    document.getElementById("tab-section-4").removeAttribute('hidden')
+
 
 
     var egg = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"
@@ -734,6 +738,12 @@ function interaction_user()
       alert("Your DeMo is intrigued by " + user_input + "!")
     }
   }
+
+  document.getElementById("tab-section-1").removeAttribute('hidden')
+  document.getElementById("tab-section-2").setAttribute('hidden')
+  document.getElementById("tab-section-3").setAttribute('hidden')
+  document.getElementById("tab-section-4").setAttribute('hidden')
+
 }
 
 function save()
