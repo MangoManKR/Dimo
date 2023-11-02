@@ -237,7 +237,7 @@ function signUp(username, inscription_address){
   }
 }
 
-function demo_image()
+function demo_image(num)
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
@@ -246,14 +246,14 @@ function demo_image()
     document.getElementById("demo_img").src = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAQMAAACQp+OdAAAABlBMVEX///8AAABVwtN+AAAAaUlEQVQoz2OgD+D/AGVYyEAZCWxQxgFmCM3YwNgAZjADxcAMNqAqMIOFgUEBzOBhYDAAMzgYGARQGRJgxADmcqAyDMAaGcCGsNCBAbcU7gy4CxG+QPgL4VOE3xGhwfCAHRpQ9n8YBh8AADWfDLUVxF0OAAAAAElFTkSuQmCC"; 
     //document.getElementById("demo_img").style.filter = generate_filter("#0000ff")
   } else {
-    demo = demo[cnt]
+    demo = demo[num]
     demo = JSON.parse(demo.content)
     document.getElementById("demo_img").src = "data:image/png;base64,"+demo.image
     document.getElementById("demo_img").style.filter = generate_filter(demo.status.main_color.replace('0x','#'))
   }
 }
 
-function demo_status()
+function demo_status(num)
 {
   var demo = localStorage.getItem('demo')
   demo = JSON.parse(demo)
@@ -266,7 +266,7 @@ function demo_status()
     document.getElementById("d_status2").innerText = 'Click below button to order your demo!';
     document.getElementById("d_status3").innerText = "Or send your inscription to tb1ps7324f30226wrjx9hr09esc78ec3jrsyk2psf90tk4rq3rqqtw2qsv5427.";
   } else {
-    demo = demo[cnt]
+    demo = demo[num]
     demo = JSON.parse(demo.content)
     var sex = ""
     var health = ""
@@ -545,8 +545,8 @@ function history_prev(){
   {
     alert("This is the first DeMo.")
   } else {
-    demo_image()
-    demo_status()
+    demo_image(cnt-1)
+    demo_status(cnt-1)
     localStorage.setItem("cnt", cnt-1)
   }
 }
@@ -559,8 +559,8 @@ function history_next(){
   {
     alert("This is the last DeMo.")
   } else {
-    demo_image()
-    demo_status()
+    demo_image(cnt+1)
+    demo_status(cnt+1)
     localStorage.setItem("cnt", cnt+1)
   }
 }
@@ -801,8 +801,9 @@ function save()
   .then((result) => {
     getDeMoList(user.uid)
     localStorage.setItem("cnt", cnt+1)
-    demo_image()
-    demo_status()
+    var cnt = localStorage.getItem("cnt")
+    demo_image(cnt)
+    demo_status(cnt)
     console.log(result)});
   }
 }
